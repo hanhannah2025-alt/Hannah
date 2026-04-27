@@ -26,67 +26,86 @@ const cities = [
   { name: '苏州' },
 ];
 
-// 模拟数据
+// 热门岗位列表
+const hotPositions = [
+  '产品经理', '前端开发', '后端开发', 'UI设计师', '数据分析师',
+  '运营专员', '算法工程师', '测试工程师', '全栈开发', 'Java开发',
+  '产品运营', '投资经理', '量化交易员', '风控专员', '运维工程师',
+];
+
+// 模拟数据 - 小红书风格分享贴
 const feedData = [
   {
-    id: 1, city: '北京', position: '高级产品经理', company: '字节跳动 · 朝阳区', salary: '35-50K', industry: '互联网',
-    tags: [{ text: '不加班', type: 'trend' as const }, { text: '公积金全额', type: 'salary' as const }],
-    content: '团队氛围好，领导nice，有成长空间',
+    id: 1, city: '北京', position: '运营转产品3年拿到字节P7！我的跨行上岸日记✨', company: '字节跳动 · 朝阳区', salary: '35-50K', industry: '互联网',
+    tags: [{ text: '跨行经验', type: 'trend' as const }, { text: '面试分享', type: 'salary' as const }],
+    content: '从传统运营转互联网产品，整整准备了8个月！每天下班后学习3小时，从0到1搭建作品集。面试时被问的最多的就是"为什么转产品"，我的回答是"运营让我更懂用户，产品让我实现想法"～现在组里氛围超好，领导nice，有成长空间！',
+    nickname: '产品小甜心', likes: 2341, comments: 156,
   },
   {
-    id: 2, city: '上海', position: '前端开发工程师', company: '蚂蚁集团 · 浦东新区', salary: '25-35K', industry: '互联网',
-    tags: [{ text: '神仙主管', type: 'trend' as const }, { text: '弹性打卡', type: 'trend' as const }],
-    content: '技术栈新，可以学到很多东西',
+    id: 2, city: '上海', position: 'P5晋升P6面经，5年前端涨薪40%📈', company: '蚂蚁集团 · 浦东新区', salary: '25-35K', industry: '互联网',
+    tags: [{ text: '面试分享', type: 'salary' as const }, { text: '职级年限', type: 'trend' as const }],
+    content: '终于拿到P6了！分享一下我的晋升答辩经验：1）项目一定要有亮点数据支撑；2）技术深度要体现；3）要有跨团队协作案例。答辩前模拟了3次，准备了20个可能的问题。薪资从18k涨到25k，终于可以在上海买房了～',
+    nickname: '前端小哥哥', likes: 1892, comments: 89,
   },
   {
-    id: 3, city: '深圳', position: '数据分析师', company: '腾讯 · 南山区', salary: '30-45K', industry: '互联网',
-    tags: [{ text: '免费三餐', type: 'salary' as const }, { text: '年终奖高', type: 'salary' as const }],
-    content: '福利待遇好，加班有补贴',
+    id: 3, city: '深圳', position: '腾讯数据分析岗真实工作状态💔', company: '腾讯 · 南山区', salary: '30-45K', industry: '互联网',
+    tags: [{ text: '加班强度', type: 'warning' as const }, { text: '加班', type: 'warning' as const }],
+    content: '10-10-6真的是常态...周均加班25小时。虽然薪资高，但身体真的扛不住。已经体检出甲状腺结节和脂肪肝了。福利确实好，免费三餐健身房，但用命换钱值得吗？最近在考虑要不要回老家发展了...',
+    nickname: '打工人小王', likes: 5678, comments: 234,
   },
   {
-    id: 4, city: '杭州', position: '全栈开发', company: '某创业公司 · 西湖区', salary: '15-25K', industry: '互联网',
+    id: 4, city: '杭州', position: '⚠️避雷！这家公司千万别去🚫', company: '某创业公司 · 西湖区', salary: '15-25K', industry: '互联网',
     tags: [{ text: '避雷', type: 'warning' as const }, { text: '加班严重', type: 'warning' as const }],
-    content: '试用期不给交社保，经常拖欠工资，快跑！',
+    content: '一定要避雷！试用期不给交社保，经常拖欠工资，996是底线。老板天天画饼说上市，结果连公积金都不交。同事走了三分之二，HR还在疯狂招人。离职时还扣了我半个月工资，已经申请仲裁了！快跑！',
+    nickname: '职场避雷针', likes: 12453, comments: 892,
   },
   {
-    id: 5, city: '广州', position: 'UI设计师', company: '网易 · 天河区', salary: '20-30K', industry: '互联网',
-    tags: [{ text: '不加班', type: 'trend' as const }, { text: '神仙主管', type: 'trend' as const }],
-    content: '设计团队很强，可以学到很多',
+    id: 5, city: '广州', position: '平面设计转UI，半年上岸网易🎨', company: '网易 · 天河区', salary: '20-30K', industry: '互联网',
+    tags: [{ text: '跨行经验', type: 'trend' as const }, { text: '面试分享', type: 'salary' as const }],
+    content: '我是平面设计出身，一直想转UI但没勇气。上半年终于下定决心，每天下班后学Figma和交互设计，周末去线下课充电。作品集做了3个月，改了8版！面试时作品集被夸了，说比很多科班出身的还好。现在设计团队很强，能学到很多～',
+    nickname: '设计喵喵', likes: 3421, comments: 167,
   },
   {
-    id: 6, city: '北京', position: '算法工程师', company: '美团 · 海淀区', salary: '50-80K', industry: '互联网',
-    tags: [{ text: '高薪', type: 'salary' as const }, { text: '六险一金', type: 'salary' as const }],
-    content: '薪资天花板，但对学历要求高',
+    id: 6, city: '北京', position: '博士毕业直招P8，算法题深度解析🎓', company: '美团 · 海淀区', salary: '50-80K', industry: '互联网',
+    tags: [{ text: '职级年限', type: 'trend' as const }, { text: '面试分享', type: 'salary' as const }],
+    content: '分享一下校招直招P8的经历：学历是敲门砖，但算法题才是关键！我刷了300+道LeetCode，整理了20+道高频题。面试最爱问的是LRU缓存、手写堆排序、动态规划。现在在推荐算法组，做外卖的实时推荐，技术栈很新～',
+    nickname: '算法大神', likes: 8923, comments: 456,
   },
   {
-    id: 7, city: '成都', position: '运营专员', company: '某教育公司 · 高新区', salary: '8-12K', industry: '教育',
-    tags: [{ text: '裁员潮', type: 'warning' as const }, { text: '行业下行', type: 'warning' as const }],
-    content: '教育行业现在很不稳定，慎重考虑',
+    id: 7, city: '成都', position: '教育行业裁员潮...慎重考虑💔', company: '某教育公司 · 高新区', salary: '8-12K', industry: '教育',
+    tags: [{ text: '避雷', type: 'warning' as const }, { text: '行业下行', type: 'warning' as const }],
+    content: '我们部门这周又裁了30%，我已经拿到赔偿准备走了。教育行业现在真的很不稳定，双减后一直没缓过来。虽然成都生活成本低，但天天担心失业真的很难受。建议想进教育行业的同学慎重，或者选职业教育方向会好一些。',
+    nickname: '职场失意人', likes: 4567, comments: 321,
   },
   {
-    id: 8, city: '上海', position: 'Java开发', company: '拼多多 · 长宁区', salary: '40-60K', industry: '互联网',
-    tags: [{ text: '高薪', type: 'salary' as const }, { text: '强度大', type: 'warning' as const }],
-    content: '钱多但累，适合想赚钱的年轻人',
+ id: 8, city: '上海', position: '拼多多Java开发真实体验🫠', company: '拼多多 · 长宁区', salary: '40-60K', industry: '互联网',
+    tags: [{ text: '加班强度', type: 'warning' as const }, { text: '加班', type: 'warning' as const }],
+    content: '11-11-6高强度，加班费不兑现。虽然薪资高，但每天早上出门孩子还没醒，晚上回家孩子已经睡了。身体出现各种问题，失眠焦虑。已经在看杭州的工作机会了，虽然薪资会降一些，但希望能有生活...',
+    nickname: '焦虑的Java', likes: 6234, comments: 278,
   },
   {
-    id: 9, city: '深圳', position: '产品运营', company: '大疆 · 南山区', salary: '18-28K', industry: '互联网',
-    tags: [{ text: '行业领先', type: 'trend' as const }, { text: '福利好', type: 'salary' as const }],
-    content: '无人机行业龙头，发展前景好',
+    id: 9, city: '深圳', position: '销售转运营，2年做到主管💪', company: '大疆 · 南山区', salary: '18-28K', industry: '互联网',
+    tags: [{ text: '跨行经验', type: 'trend' as const }, { text: '职级年限', type: 'trend' as const }],
+    content: '我是做ToB销售出身，对用户需求很敏感。转运营后，把销售思维带进来了，用数据说话，用结果导向。2年时间从专员做到主管，团队从3人扩展到12人。大疆的无人机行业真的很有前景，能学到很多东西，发展空间也大～',
+    nickname: '运营小能手', likes: 2987, comments: 134,
   },
   {
-    id: 10, city: '杭州', position: '测试工程师', company: '阿里巴巴 · 余杭区', salary: '25-40K', industry: '互联网',
-    tags: [{ text: '大厂背书', type: 'trend' as const }, { text: '期权', type: 'salary' as const }],
-    content: 'P6起招，有期权，福利齐全',
+    id: 10, city: '杭州', position: '阿里P6测试必问20题📝', company: '阿里巴巴 · 余杭区', salary: '25-40K', industry: '互联网',
+    tags: [{ text: '面试分享', type: 'salary' as const }, { text: '职级年限', type: 'trend' as const }],
+    content: '整理了阿里面试必问的测试题：1）测试用例设计方法；2）Bug生命周期；3）自动化测试框架；4）性能测试指标；5）安全测试基础...已经整理好答案文档，有需要的可以私信我。现在在阿里做测试开发，技术氛围很好，组里大佬很多～',
+    nickname: '测试笔记君', likes: 4156, comments: 198,
   },
   {
-    id: 11, city: '北京', position: '投资经理', company: '某证券公司 · 金融街', salary: '30-50K', industry: '金融',
-    tags: [{ text: '行业趋势', type: 'trend' as const }, { text: '奖金高', type: 'salary' as const }],
-    content: '金融行业核心岗位，奖金丰厚',
+    id: 11, city: '北京', position: '四大审计转投行，我的3年备考路🎯', company: '某证券公司 · 金融街', salary: '30-50K', industry: '金融',
+    tags: [{ text: '跨行经验', type: 'trend' as const }, { text: '面试分享', type: 'salary' as const }],
+    content: '从四大审计转到投行，用了整整3年！期间考了CPA+CFA，每天下班学到凌晨。最难忘的是某天加班到3点，回家后还要继续看case study。现在在券商做投行部，虽然还是经常出差熬夜，但薪资确实高了很多，而且能接触到很多大项目～',
+    nickname: '金融民工', likes: 5678, comments: 234,
   },
   {
-    id: 12, city: '上海', position: '量化交易员', company: '某私募基金 · 陆家嘴', salary: '60-100K', industry: '金融',
-    tags: [{ text: '高薪', type: 'salary' as const }, { text: '门槛高', type: 'warning' as const }],
-    content: '薪资天花板，但需要名校背景',
+    id: 12, city: '上海', position: '量化交易岗，9-12-7是标配💀', company: '某私募基金 · 陆家嘴', salary: '60-100K', industry: '金融',
+    tags: [{ text: '加班强度', type: 'warning' as const }, { text: '加班', type: 'warning' as const }],
+    content: '高频交易岗位，9-12-7是标配，身体好才能撑得住。我们组5个人，已经有3个辞职了。虽然薪资确实是天花板级别，但用健康换钱真的值得吗？最近体检发现心脏早搏，医生建议休息，但项目压力太大根本走不开...',
+    nickname: '量化交易员', likes: 7892, comments: 456,
   },
 ];
 
@@ -95,6 +114,7 @@ export default function IntelligencePage() {
   const [activeFilter, setActiveFilter] = useState('全部');
   const [showIndustryPicker, setShowIndustryPicker] = useState(false);
   const [showCityPicker, setShowCityPicker] = useState(false);
+  const [showPositionPicker, setShowPositionPicker] = useState(false);
   const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
   const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
   const [selectedCity, setSelectedCity] = useState<string>('北京');
@@ -104,7 +124,7 @@ export default function IntelligencePage() {
     setIsLoaded(true);
   }, []);
 
-  const filters = ['全部', '高薪', '避雷', '行业趋势'];
+  const filters = ['全部', '跨行经验', '避雷', '面试分享', '加班强度', '职级年限'];
 
   const filteredData = feedData.filter((item) => {
     const matchesSearch =
@@ -116,9 +136,11 @@ export default function IntelligencePage() {
     const matchesPosition = !selectedPosition || item.position.includes(selectedPosition);
 
     if (activeFilter === '全部') return matchesSearch && matchesCity && matchesIndustry && matchesPosition;
-    if (activeFilter === '高薪') return matchesSearch && matchesCity && matchesIndustry && matchesPosition && item.tags.some((t) => t.type === 'salary');
+    if (activeFilter === '跨行经验') return matchesSearch && matchesCity && matchesIndustry && matchesPosition && item.tags.some((t) => t.type === 'trend');
     if (activeFilter === '避雷') return matchesSearch && matchesCity && matchesIndustry && matchesPosition && item.tags.some((t) => t.type === 'warning');
-    if (activeFilter === '行业趋势') return matchesSearch && matchesCity && matchesIndustry && matchesPosition && item.tags.some((t) => t.type === 'trend');
+    if (activeFilter === '面试分享') return matchesSearch && matchesCity && matchesIndustry && matchesPosition && item.tags.some((t) => t.type === 'salary');
+    if (activeFilter === '加班强度') return matchesSearch && matchesCity && matchesIndustry && matchesPosition && item.tags.some((t) => t.text.includes('加班'));
+    if (activeFilter === '职级年限') return matchesSearch && matchesCity && matchesIndustry && matchesPosition && item.content.includes('年') || item.content.includes('级');
     return matchesSearch && matchesCity && matchesIndustry && matchesPosition;
   });
 
@@ -144,11 +166,11 @@ export default function IntelligencePage() {
             </div>
           </div>
 
-          {/* 行业 + 地点 筛选器 */}
+          {/* 行业 + 地点 + 岗位 筛选器 */}
           <div className="flex gap-2 mt-3">
             {/* 行业筛选 */}
             <button
-              onClick={() => { setShowIndustryPicker(!showIndustryPicker); setShowCityPicker(false); }}
+              onClick={() => { setShowIndustryPicker(!showIndustryPicker); setShowCityPicker(false); setShowPositionPicker(false); }}
               className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm transition-all duration-300 ${
                 selectedIndustry || selectedPosition
                   ? 'bg-gradient-to-r from-primary/20 to-accent/20 text-foreground border border-primary/30'
@@ -166,7 +188,7 @@ export default function IntelligencePage() {
 
             {/* 地点筛选 */}
             <button
-              onClick={() => { setShowCityPicker(!showCityPicker); setShowIndustryPicker(false); }}
+              onClick={() => { setShowCityPicker(!showCityPicker); setShowIndustryPicker(false); setShowPositionPicker(false); }}
               className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-sm transition-all duration-300 ${
                 selectedCity !== '全部'
                   ? 'bg-gradient-to-r from-primary/20 to-accent/20 text-foreground border border-primary/30'
@@ -306,6 +328,9 @@ export default function IntelligencePage() {
             tags={item.tags}
             content={item.content}
             index={index}
+            nickname={item.nickname}
+            likes={item.likes}
+            comments={item.comments}
           />
         ))}
       </div>

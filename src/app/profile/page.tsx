@@ -2,9 +2,13 @@
 
 export default function ProfilePage() {
   const menuItems = [
-    { icon: 'document', label: '我的简历', desc: '管理简历版本', color: 'from-violet-500 to-purple-500' },
-    { icon: 'star', label: '收藏岗位', desc: '已收藏 3 个岗位', color: 'from-amber-500 to-orange-500' },
-    { icon: 'history', label: '评估历史', desc: '查看历史身价评估', color: 'from-cyan-500 to-blue-500' },
+    { icon: 'follow', label: '关注', desc: '我关注的用户 12', color: 'from-pink-500 to-rose-500' },
+    { icon: 'like', label: '点赞', desc: '点赞的内容 48', color: 'from-red-500 to-orange-500' },
+    { icon: 'star', label: '收藏', desc: '收藏的分享 23', color: 'from-amber-500 to-yellow-500' },
+    { icon: 'community', label: '社区', desc: '我的社区动态', color: 'from-violet-500 to-purple-500' },
+    { icon: 'history', label: '浏览记录', desc: '最近浏览 56', color: 'from-cyan-500 to-blue-500' },
+    { icon: 'order', label: '订单', desc: '我的订单 3', color: 'from-emerald-500 to-teal-500' },
+    { icon: 'course', label: '我的课程', desc: '已购课程 5', color: 'from-indigo-500 to-blue-500' },
     { icon: 'settings', label: '设置', desc: '账号与偏好设置', color: 'from-slate-500 to-slate-400' },
   ];
 
@@ -21,7 +25,7 @@ export default function ProfilePage() {
           <div className="flex items-center gap-4 mb-5">
             <div className="relative">
               <div className="w-18 h-18 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-2xl font-bold text-white shadow-lg shadow-primary/30">
-                U
+                职
               </div>
               <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-success rounded-full border-2 border-[#0D1320] flex items-center justify-center">
                 <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -30,16 +34,16 @@ export default function ProfilePage() {
               </div>
             </div>
             <div>
-              <h2 className="text-lg font-bold text-foreground">用户昵称</h2>
-              <p className="text-muted text-sm">产品经理 · 北京</p>
+              <h2 className="text-lg font-bold text-foreground">职场探索者</h2>
+              <p className="text-muted text-sm">分享职场干货 | 专注产品运营</p>
             </div>
           </div>
 
           <div className="grid grid-cols-3 gap-4 text-center">
             {[
-              { value: '3', label: '收藏岗位', color: 'text-accent' },
-              { value: '2', label: '身价评估', color: 'text-primary' },
-              { value: '1', label: 'Offer决策', color: 'text-foreground' },
+              { value: '12', label: '关注', color: 'text-accent' },
+              { value: '48', label: '获赞', color: 'text-primary' },
+              { value: '23', label: '收藏', color: 'text-warning' },
             ].map((stat, i) => (
               <div key={i} className="bg-white/5 backdrop-blur-sm rounded-2xl py-3">
                 <p className={`text-xl font-bold ${stat.color}`}>{stat.value}</p>
@@ -59,19 +63,39 @@ export default function ProfilePage() {
           >
             <div className="flex items-center gap-4">
               <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center shadow-lg`}>
-                {item.icon === 'document' && (
+                {item.icon === 'follow' && (
                   <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                  </svg>
+                )}
+                {item.icon === 'like' && (
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
                   </svg>
                 )}
                 {item.icon === 'star' && (
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006Z" clipRule="evenodd" />
+                  </svg>
+                )}
+                {item.icon === 'community' && (
                   <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0 .94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                   </svg>
                 )}
                 {item.icon === 'history' && (
                   <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+                )}
+                {item.icon === 'order' && (
+                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                  </svg>
+                )}
+                {item.icon === 'course' && (
+                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.904a48.627 48.627 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.57 50.57 0 0 0-2.658-.813A59.905 59.905 0 0 1 12 3.493a59.902 59.902 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
                   </svg>
                 )}
                 {item.icon === 'settings' && (
