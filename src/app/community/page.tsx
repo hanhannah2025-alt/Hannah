@@ -37,6 +37,7 @@ export default function CommunityPage() {
   const [radarStep, setRadarStep] = useState<RadarStep>('input');
   const [formData, setFormData] = useState({ company: '', position: '', salary: '', yearsOfExperience: '' });
   const [scanProgress, setScanProgress] = useState(0);
+  const [expandedSalary, setExpandedSalary] = useState(false);
 
   useEffect(() => {
     if (moonActive) {
