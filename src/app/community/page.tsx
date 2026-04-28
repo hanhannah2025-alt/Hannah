@@ -426,7 +426,7 @@ export default function CommunityPage() {
                   ].map((item, i) => (
                     <div key={i}>
                       <div className="flex justify-between text-sm mb-1.5"><span className="text-muted">{item.label}</span><span className="font-semibold">{item.value}K</span></div>
-                      <div className="h-2 bg-white/5 rounded-full overflow-hidden"><div className={`h-full bg-gradient-to-r ${item.color} rounded-full transition-all duration-1000`} style={{ width: `${Math.min(item.width, 100)}%` }} /></div>
+                      <div className="h-2 bg-white/5 rounded-full overflow-hidden"><div className={`h-full bg-gradient-to-r ${item.color} rounded-full animate-fade-in-scale`} style={{ width: `${Math.min(item.width, 100)}%` }} /></div>
                     </div>
                   ))}
                 </div>
