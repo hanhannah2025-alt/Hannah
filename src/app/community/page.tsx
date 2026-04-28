@@ -379,12 +379,12 @@ export default function CommunityPage() {
                 <div>
                   <label className="block text-sm text-muted mb-2">工作年限</label>
                   <select value={formData.yearsOfExperience} onChange={(e) => setFormData({ ...formData, yearsOfExperience: e.target.value })} className="w-full px-4 py-3.5 bg-white/5 rounded-xl text-foreground border border-white/5 focus:outline-none focus:border-primary/30 transition-all appearance-none">
-                    <option value="">请选择</option>
-                    <option value="0-1">0-1年</option>
-                    <option value="1-3">1-3年</option>
-                    <option value="3-5">3-5年</option>
-                    <option value="5-10">5-10年</option>
-                    <option value="10+">10年以上</option>
+                    <option value="" className="text-gray-400">请选择</option>
+                    <option value="0-1" className="text-gray-400">0-1年</option>
+                    <option value="1-3" className="text-gray-400">1-3年</option>
+                    <option value="3-5" className="text-gray-400">3-5年</option>
+                    <option value="5-10" className="text-gray-400">5-10年</option>
+                    <option value="10+" className="text-gray-400">10年以上</option>
                   </select>
                 </div>
                 <button onClick={() => { if (formData.company && formData.position && formData.salary) { setScanProgress(0); setRadarStep('scanning'); } }} disabled={!formData.company || !formData.position || !formData.salary} className="w-full py-4 btn-gradient text-white font-semibold rounded-xl disabled:opacity-40 disabled:cursor-not-allowed mt-4">开始扫描</button>
