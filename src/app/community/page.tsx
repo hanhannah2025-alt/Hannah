@@ -419,16 +419,61 @@ export default function CommunityPage() {
               <div className="glass-card rounded-2xl p-5 mb-4">
                 <h3 className="text-sm font-medium text-muted mb-4">薪资对比</h3>
                 <div className="space-y-4">
-                  {[
-                    { label: '你的薪资', value: formData.salary, color: 'from-slate-500 to-slate-400', width: (parseInt(formData.salary) / 80) * 100 },
-                    { label: '行业平均', value: Math.floor(parseInt(formData.salary) * 1.15), color: 'from-primary to-primary-light', width: (parseInt(formData.salary) * 1.15 / 80) * 100 },
-                    { label: 'Top 10%', value: Math.floor(parseInt(formData.salary) * 1.8), color: 'from-accent to-warning', width: (parseInt(formData.salary) * 1.8 / 80) * 100 },
-                  ].map((item, i) => (
-                    <div key={i}>
-                      <div className="flex justify-between text-sm mb-1.5"><span className="text-muted">{item.label}</span><span className="font-semibold">{item.value}K</span></div>
-                      <div className="h-2 bg-white/5 rounded-full overflow-hidden"><div className={`h-full bg-gradient-to-r ${item.color} rounded-full animate-fade-in-scale`} style={{ width: `${Math.min(item.width, 100)}%` }} /></div>
-                    </div>
-                  ))}
+                  {(() => {
+                    const currentSalary = parseInt(formData.salary);
+                    const avgSalary = Math.floor(currentSalary * 1.15);
+                    const diffPercent = Math.round(((currentSalary - avgSalary) / avgSalary) * 100);
+                    const isAbove = diffPercent > 0;
+
+                    return (
+                      <div>
+                        {/* 对比标题 */}
+                        <div className="flex items-center gap-2 mb-4">
+                          <h4 className="font-semibold text-foreground">你的薪资 vs 行业平均</h4>
+                          <span className={`px-3 py-1 rounded-lg text-xs font-medium ${isAbove ? 'bg-success/20 text-success' : 'bg-danger/20 text-danger'}`}>
+                            {isAbove ? `超出 ${diffPercent}%` : `低于 ${Math.abs(diffPercent)}%`}
+                          </span>
+                        </div>
+
+                        {/* 对比条形图 */}
+                        <div className="relative h-8 bg-white/5 rounded-full overflow-hidden">
+                          {/* 背景槽 - 行业平均 */}
+                          <div className="absolute inset-0 flex items-center">
+                            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-white rounded-full" />
+                          </div>
+
+                          {/* 当前薪资条 */}
+                          <div className="h-full relative">
+                            <div
+                              className={`h-full rounded-full transition-all duration-1000 ${isAbove ? 'bg-gradient-to-r from-success to-emerald-500' : 'bg-gradient-to-r from-danger to-orange-500'}`}
+                              style={{
+                                width: `${Math.min((currentSalary / 80) * 100, 100)}%`,
+                                marginLeft: isAbove ? '50%' : `${Math.min((currentSalary / 80) * 100, 100)}%`
+                              }}
+                            />
+                          </div>
+
+                          {/* 行业平均条 */}
+                          <div
+                              className="absolute top-0 bottom-0 h-8 bg-gradient-to-r from-primary to-primary-light rounded-full transition-all duration-1000"
+                              style={{ left: `${Math.min((avgSalary / 80) * 100, 100)}%`, width: '2px' }}
+                          />
+                        </div>
+
+                        {/* 详细数据 */}
+                        <div className="grid grid-cols-2 gap-4 mt-6">
+                          <div className="glass-card rounded-xl p-4">
+                            <p className="text-xs text-muted mb-1">你的当前薪资</p>
+                            <p className="text-xl font-bold text-foreground">{currentSalary}K</p>
+                          </div>
+                          <div className="glass-card rounded-xl p-4">
+                            <p className="text-xs text-muted mb-1">行业平均薪资</p>
+                            <p className="text-xl font-bold text-primary">{avgSalary}K</p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
                 </div>
               </div>
               <div className="glass-card rounded-2xl p-5 mb-4">
