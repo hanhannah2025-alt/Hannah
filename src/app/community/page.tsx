@@ -261,7 +261,7 @@ export default function CommunityPage() {
                       <span className="text-xs text-muted">{course.students}</span>
                       <div className="flex gap-0.5">
                         {[...Array(5)].map((_, k) => (
-                          <svg key={k} className={`w-2.5 h-2.5 ${k < Math.floor(course.rating) ? 'text-warning' : 'text-muted/30'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.95 1.69l1.07 3.292c.3.921-.005 1.603.3 1.902 0l-2.362 1.845c-.3.23.505-.509.55-.838l.866 3.375c.323 1.005 1.624.005 1.947 0l-3.234-2.025c-.293-.182-.646-.182-.94 0l-3.234 2.025c-.323.005-1.624-1.005-1.947 0l.866-3.375c-.05-.329-.325-.608-.55-.838l-2.362-1.845z" /></svg>
+                          <svg key={k} className={`w-3 h-3 ${k < Math.floor(course.rating) ? 'text-warning' : 'text-muted/30'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.95 1.69l1.07 3.292c.3.921-.005 1.603.3 1.902 0l-2.362 1.845c-.3.23.505-.509.55-.838l.866 3.375c.323 1.005 1.624.005 1.947 0l-3.234-2.025c-.293-.182-.646-.182-.94 0l-3.234 2.025c-.323.005-1.624-1.005-1.947 0l.866-3.375c-.05-.329-.325-.608-.55-.838l-2.362-1.845z" /></svg>
                         ))}
                       </div>
                     </div>
@@ -280,20 +280,29 @@ export default function CommunityPage() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               {[
-                { title: 'Python数据分析', level: '初级', progress: 75, color: 'from-blue-500 to-cyan-500' },
-                { title: '机器学习入门', level: '中级', progress: 45, color: 'from-purple-500 to-pink-500' },
-                { title: '前端开发进阶', level: '高级', progress: 60, color: 'from-orange-500 to-red-500' },
-                { title: '云计算DevOps', level: '高级', progress: 30, color: 'from-emerald-500 to-teal-500' },
-              ].map((skill, i) => (
+                { title: 'Python数据分析', students: '15.2K', rating: 4.8, price: '¥299', tags: ['初级', '实战'] },
+                { title: '机器学习入门', students: '8.9K', rating: 4.7, price: '¥399', tags: ['AI', '算法'] },
+                { title: '前端开发进阶', students: '12.5K', rating: 4.9, price: '¥349', tags: ['高级', '框架'] },
+                { title: '云计算DevOps', students: '6.3K', rating: 4.6, price: '¥449', tags: ['运维', '部署'] },
+              ].map((course, i) => (
                 <div key={i} className="glass-card rounded-2xl p-4 group card-hover-lift">
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className="font-medium text-sm text-foreground">{skill.title}</h4>
-                    <span className="px-2 py-0.5 bg-white/5 text-muted text-[10px] rounded-lg">{skill.level}</span>
+                  <div className="flex gap-2 mb-3">
+                    {course.tags.map((tag, j) => (
+                      <span key={j} className="px-2 py-0.5 bg-accent/20 text-accent text-[10px] rounded-lg">{tag}</span>
+                    ))}
                   </div>
-                  <div className="h-2 bg-white/5 rounded-full overflow-hidden">
-                    <div className={`h-full bg-gradient-to-r ${skill.color} rounded-full transition-all duration-1000 group-hover:scale-x-105`} style={{ width: `${skill.progress}%` }} />
+                  <h4 className="font-medium text-sm text-foreground mb-2 truncate">{course.title}</h4>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1">
+                      <span className="text-xs text-muted">{course.students}</span>
+                      <div className="flex gap-0.5">
+                        {[...Array(5)].map((_, k) => (
+                          <svg key={k} className={`w-3 h-3 ${k < Math.floor(course.rating) ? 'text-warning' : 'text-muted/30'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.95 1.69l1.07 3.292c.3.921-.005 1.603.3 1.902 0l-2.362 1.845c-.3.23.505-.509.55-.838l.866 3.375c.323 1.005 1.624.005 1.947 0l-3.234-2.025c-.293-.182-.646-.182-.94 0l-3.234 2.025c-.323.005-1.624-1.005-1.947 0l.866-3.375c-.05-.329-.325-.608-.55-.838l-2.362-1.845z" /></svg>
+                        ))}
+                      </div>
+                    </div>
+                    <span className="text-sm font-bold text-accent">{course.price}</span>
                   </div>
-                  <p className="text-[10px] text-muted mt-2">{skill.progress}% 同行掌握</p>
                 </div>
               ))}
             </div>
@@ -305,24 +314,30 @@ export default function CommunityPage() {
               <div className="w-1 h-5 rounded-full bg-gradient-to-b from-warning to-danger" />
               <h3 className="font-semibold text-foreground">职场杠杆</h3>
             </div>
-            <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-3">
               {[
-                { title: '跳槽策略', description: '平均涨薪25%，掌握最佳时机', icon: '🚀', count: '2.3K' },
-                { title: '晋升谈判', description: '数据说话，争取合理涨幅', icon: '💬', count: '1.8K' },
-                { title: '证书加成', description: '专业认证提升竞争力', icon: '📜', count: '3.1K' },
-                { title: '人脉网络', description: '拓展圈子，获取机会', icon: '🤝', count: '4.2K' },
-              ].map((item, i) => (
-                <div key={i} className="glass-card rounded-2xl p-4 flex items-center gap-4 group card-hover-lift">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
-                    {item.icon}
+                { title: '跳槽策略', students: '18.5K', rating: 4.8, price: '¥199', tags: ['实战', '案例'] },
+                { title: '晋升谈判', students: '12.3K', rating: 4.9, price: '¥249', tags: ['沟通', '数据'] },
+                { title: '管理能力提升', students: '9.8K', rating: 4.7, price: '¥399', tags: ['团队', '领导'] },
+                { title: '高效沟通', students: '15.6K', rating: 4.6, price: '¥179', tags: ['表达', '汇报'] },
+              ].map((course, i) => (
+                <div key={i} className="glass-card rounded-2xl p-4 group card-hover-lift">
+                  <div className="flex gap-2 mb-3">
+                    {course.tags.map((tag, j) => (
+                      <span key={j} className="px-2 py-0.5 bg-warning/20 text-warning text-[10px] rounded-lg">{tag}</span>
+                    ))}
                   </div>
-                  <div className="flex-1">
-                    <h4 className="font-medium text-sm text-foreground mb-1">{item.title}</h4>
-                    <p className="text-xs text-muted">{item.description}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-[10px] text-muted">已学习</p>
-                    <p className="text-sm font-bold text-accent">{item.count}</p>
+                  <h4 className="font-medium text-sm text-foreground mb-2 truncate">{course.title}</h4>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1">
+                      <span className="text-xs text-muted">{course.students}</span>
+                      <div className="flex gap-0.5">
+                        {[...Array(5)].map((_, k) => (
+                          <svg key={k} className={`w-3 h-3 ${k < Math.floor(course.rating) ? 'text-warning' : 'text-muted/30'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.95 1.69l1.07 3.292c.3.921-.005 1.603.3 1.902 0l-2.362 1.845c-.3.23.505-.509.55-.838l.866 3.375c.323 1.005 1.624.005 1.947 0l-3.234-2.025c-.293-.182-.646-.182-.94 0l-3.234 2.025c-.323.005-1.624-1.005-1.947 0l.866-3.375c-.05-.329-.325-.608-.55-.838l-2.362-1.845z" /></svg>
+                        ))}
+                      </div>
+                    </div>
+                    <span className="text-sm font-bold text-accent">{course.price}</span>
                   </div>
                 </div>
               ))}
