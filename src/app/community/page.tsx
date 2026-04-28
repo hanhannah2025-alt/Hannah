@@ -89,17 +89,17 @@ export default function CommunityPage() {
 
         {/* Tab切换 */}
         <div className="flex gap-2">
-          <button onClick={() => setActiveTab('map')} className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${activeTab === 'map' ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/20' : 'bg-white/5 text-muted border border-white/5 hover:bg-white/10'}`}>
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>
-            行业地图
+          <button onClick={() => setActiveTab('map')} className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-medium transition-all duration-300 ${activeTab === 'map' ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/20' : 'bg-white/5 text-muted border border-white/5 hover:bg-white/10'}`}>
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>
+            <span className="text-xs">行业地图</span>
           </button>
-          <button onClick={() => setActiveTab('radar')} className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${activeTab === 'radar' ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/20' : 'bg-white/5 text-muted border border-white/5 hover:bg-white/10'}`}>
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9.348 14.651a3.75 3.75 0 0 1 0-5.303m5.304 0a3.75 3.75 0 0 1 0 5.303m-7.425 2.122a6.75 6.75 0 0 1 0-9.546m9.546 0a6.75 6.75 0 0 1 0 9.546M5.106 18.894c-3.808-3.808-3.808-9.98 0-13.789m13.788 0c3.808 3.808 3.808 9.981 0 13.79M12 12h.008v.007H12V12Z" /></svg>
-            身价雷达
+          <button onClick={() => setActiveTab('radar')} className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-medium transition-all duration-300 ${activeTab === 'radar' ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/20' : 'bg-white/5 text-muted border border-white/5 hover:bg-white/10'}`}>
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9.348 14.651a3.75 3.75 0 0 1 0-5.303m5.304 0a3.75 3.75 0 0 1 0 5.303m-7.425 2.122a6.75 6.75 0 0 1 0-9.546m9.546 0a6.75 6.75 0 0 1 0 9.546M5.106 18.894c-3.808-3.808-3.808-9.98 0-13.789m13.788 0c3.808 3.808 3.808 9.981 0 13.79M12 12h.008v.007H12V12Z" /></svg>
+            <span className="text-xs">身价雷达</span>
           </button>
-          <button onClick={() => setActiveTab('salary')} className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${activeTab === 'salary' ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/20' : 'bg-white/5 text-muted border border-white/5 hover:bg-white/10'}`}>
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
-            涨薪路径
+          <button onClick={() => setActiveTab('salary')} className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-medium transition-all duration-300 ${activeTab === 'salary' ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/20' : 'bg-white/5 text-muted border border-white/5 hover:bg-white/10'}`}>
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+            <span className="text-xs">涨薪路径</span>
           </button>
         </div>
       </header>
@@ -226,10 +226,10 @@ export default function CommunityPage() {
 
       {/* 涨薪路径内容 */}
       {activeTab === 'salary' && (
-        <div className="flex-1 px-4 py-6 animate-fade-in-up overflow-y-auto pb-28">
-          <div className="text-center mb-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 mb-4 animate-float">
-              <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}>
+        <div className="flex-1 px-4 py-5 animate-fade-in-up overflow-y-auto pb-28">
+          <div className="text-center mb-4">
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 mb-3 animate-float">
+              <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}>
                 <defs>
                   <linearGradient id="boltGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#6366F1" />
@@ -239,40 +239,40 @@ export default function CommunityPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" stroke="url(#boltGradient)" />
               </svg>
             </div>
-            <h2 className="text-xl font-bold text-gradient">涨薪路径</h2>
-            <p className="text-muted text-sm mt-1">精选课程，加速成长</p>
+            <h2 className="text-lg font-bold text-gradient">涨薪路径</h2>
+            <p className="text-muted text-xs mt-1">精选课程，加速成长</p>
           </div>
 
           {/* 好课优享 */}
-          <div className="mb-6">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-1 h-5 rounded-full bg-gradient-to-b from-primary to-accent" />
-              <h3 className="font-semibold text-foreground">好课优享</h3>
+          <div className="mb-5">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-1 h-4 rounded-full bg-gradient-to-b from-primary to-accent" />
+              <h3 className="font-semibold text-foreground text-sm">好课优享</h3>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2.5">
               {[
                 { title: '产品经理进阶', students: '12.8K', rating: 4.9, price: '¥399', tags: ['热门', '实战'] },
                 { title: '数据分析实战', students: '8.5K', rating: 4.8, price: '¥499', tags: ['Python', 'SQL'] },
                 { title: '运营增长策略', students: '6.2K', rating: 4.7, price: '¥299', tags: ['增长', '案例'] },
                 { title: '项目管理PMP', students: '9.1K', rating: 4.9, price: '¥599', tags: ['认证', '管理'] },
               ].map((course, i) => (
-                <div key={i} className="glass-card rounded-2xl p-4 group card-hover-lift">
-                  <div className="flex gap-2 mb-3">
+                <div key={i} className="glass-card rounded-2xl p-3 group card-hover-lift">
+                  <div className="flex gap-1.5 mb-2">
                     {course.tags.map((tag, j) => (
-                      <span key={j} className="px-2 py-0.5 bg-primary/20 text-primary text-[10px] rounded-lg">{tag}</span>
+                      <span key={j} className="px-1.5 py-0.5 bg-primary/20 text-primary text-[9px] rounded-lg">{tag}</span>
                     ))}
                   </div>
-                  <h4 className="font-medium text-sm text-foreground mb-2 truncate">{course.title}</h4>
+                  <h4 className="font-medium text-xs text-foreground mb-2 truncate">{course.title}</h4>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1">
-                      <span className="text-xs text-muted">{course.students}</span>
+                      <span className="text-[10px] text-muted">{course.students}</span>
                       <div className="flex gap-0.5">
                         {[...Array(5)].map((_, k) => (
-                          <svg key={k} className={`w-3 h-3 ${k < Math.floor(course.rating) ? 'text-warning' : 'text-muted/30'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.95 1.69l1.07 3.292c.3.921-.005 1.603.3 1.902 0l-2.362 1.845c-.3.23.505-.509.55-.838l.866 3.375c.323 1.005 1.624.005 1.947 0l-3.234-2.025c-.293-.182-.646-.182-.94 0l-3.234 2.025c-.323.005-1.624-1.005-1.947 0l.866-3.375c-.05-.329-.325-.608-.55-.838l-2.362-1.845z" /></svg>
+                          <svg key={k} className={`w-2.5 h-2.5 ${k < Math.floor(course.rating) ? 'text-warning' : 'text-muted/30'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.95 1.69l1.07 3.292c.3.921-.005 1.603.3 1.902 0l-2.362 1.845c-.3.23.505-.509.55-.838l.866 3.375c.323 1.005 1.624.005 1.947 0l-3.234-2.025c-.293-.182-.646-.182-.94 0l-3.234 2.025c-.323.005-1.624-1.005-1.947 0l.866-3.375c-.05-.329-.325-.608-.55-.838l-2.362-1.845z" /></svg>
                         ))}
                       </div>
                     </div>
-                    <span className="text-sm font-bold text-accent">{course.price}</span>
+                    <span className="text-xs font-bold text-accent">{course.price}</span>
                   </div>
                 </div>
               ))}
@@ -280,35 +280,35 @@ export default function CommunityPage() {
           </div>
 
           {/* 技能红利 */}
-          <div className="mb-6">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-1 h-5 rounded-full bg-gradient-to-b from-accent to-warning" />
-              <h3 className="font-semibold text-foreground">技能红利</h3>
+          <div className="mb-5">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-1 h-4 rounded-full bg-gradient-to-b from-accent to-warning" />
+              <h3 className="font-semibold text-foreground text-sm">技能红利</h3>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2.5">
               {[
                 { title: 'Python数据分析', students: '15.2K', rating: 4.8, price: '¥299', tags: ['初级', '实战'] },
                 { title: '机器学习入门', students: '8.9K', rating: 4.7, price: '¥399', tags: ['AI', '算法'] },
                 { title: '前端开发进阶', students: '12.5K', rating: 4.9, price: '¥349', tags: ['高级', '框架'] },
                 { title: '云计算DevOps', students: '6.3K', rating: 4.6, price: '¥449', tags: ['运维', '部署'] },
               ].map((course, i) => (
-                <div key={i} className="glass-card rounded-2xl p-4 group card-hover-lift">
-                  <div className="flex gap-2 mb-3">
+                <div key={i} className="glass-card rounded-2xl p-3 group card-hover-lift">
+                  <div className="flex gap-1.5 mb-2">
                     {course.tags.map((tag, j) => (
-                      <span key={j} className="px-2 py-0.5 bg-accent/20 text-accent text-[10px] rounded-lg">{tag}</span>
+                      <span key={j} className="px-1.5 py-0.5 bg-accent/20 text-accent text-[9px] rounded-lg">{tag}</span>
                     ))}
                   </div>
-                  <h4 className="font-medium text-sm text-foreground mb-2 truncate">{course.title}</h4>
+                  <h4 className="font-medium text-xs text-foreground mb-2 truncate">{course.title}</h4>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1">
-                      <span className="text-xs text-muted">{course.students}</span>
+                      <span className="text-[10px] text-muted">{course.students}</span>
                       <div className="flex gap-0.5">
                         {[...Array(5)].map((_, k) => (
-                          <svg key={k} className={`w-3 h-3 ${k < Math.floor(course.rating) ? 'text-warning' : 'text-muted/30'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.95 1.69l1.07 3.292c.3.921-.005 1.603.3 1.902 0l-2.362 1.845c-.3.23.505-.509.55-.838l.866 3.375c.323 1.005 1.624.005 1.947 0l-3.234-2.025c-.293-.182-.646-.182-.94 0l-3.234 2.025c-.323.005-1.624-1.005-1.947 0l.866-3.375c-.05-.329-.325-.608-.55-.838l-2.362-1.845z" /></svg>
+                          <svg key={k} className={`w-2.5 h-2.5 ${k < Math.floor(course.rating) ? 'text-warning' : 'text-muted/30'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.95 1.69l1.07 3.292c.3.921-.005 1.603.3 1.902 0l-2.362 1.845c-.3.23.505-.509.55-.838l.866 3.375c.323 1.005 1.624.005 1.947 0l-3.234-2.025c-.293-.182-.646-.182-.94 0l-3.234 2.025c-.323.005-1.624-1.005-1.947 0l.866-3.375c-.05-.329-.325-.608-.55-.838l-2.362-1.845z" /></svg>
                         ))}
                       </div>
                     </div>
-                    <span className="text-sm font-bold text-accent">{course.price}</span>
+                    <span className="text-xs font-bold text-accent">{course.price}</span>
                   </div>
                 </div>
               ))}
@@ -317,34 +317,34 @@ export default function CommunityPage() {
 
           {/* 职场杠杆 */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-1 h-5 rounded-full bg-gradient-to-b from-warning to-danger" />
-              <h3 className="font-semibold text-foreground">职场杠杆</h3>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-1 h-4 rounded-full bg-gradient-to-b from-warning to-danger" />
+              <h3 className="font-semibold text-foreground text-sm">职场杠杆</h3>
             </div>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2.5">
               {[
                 { title: '跳槽策略', students: '18.5K', rating: 4.8, price: '¥199', tags: ['实战', '案例'] },
                 { title: '晋升谈判', students: '12.3K', rating: 4.9, price: '¥249', tags: ['沟通', '数据'] },
                 { title: '管理能力提升', students: '9.8K', rating: 4.7, price: '¥399', tags: ['团队', '领导'] },
                 { title: '高效沟通', students: '15.6K', rating: 4.6, price: '¥179', tags: ['表达', '汇报'] },
               ].map((course, i) => (
-                <div key={i} className="glass-card rounded-2xl p-4 group card-hover-lift">
-                  <div className="flex gap-2 mb-3">
+                <div key={i} className="glass-card rounded-2xl p-3 group card-hover-lift">
+                  <div className="flex gap-1.5 mb-2">
                     {course.tags.map((tag, j) => (
-                      <span key={j} className="px-2 py-0.5 bg-warning/20 text-warning text-[10px] rounded-lg">{tag}</span>
+                      <span key={j} className="px-1.5 py-0.5 bg-warning/20 text-warning text-[9px] rounded-lg">{tag}</span>
                     ))}
                   </div>
-                  <h4 className="font-medium text-sm text-foreground mb-2 truncate">{course.title}</h4>
+                  <h4 className="font-medium text-xs text-foreground mb-2 truncate">{course.title}</h4>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1">
-                      <span className="text-xs text-muted">{course.students}</span>
+                      <span className="text-[10px] text-muted">{course.students}</span>
                       <div className="flex gap-0.5">
                         {[...Array(5)].map((_, k) => (
-                          <svg key={k} className={`w-3 h-3 ${k < Math.floor(course.rating) ? 'text-warning' : 'text-muted/30'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.95 1.69l1.07 3.292c.3.921-.005 1.603.3 1.902 0l-2.362 1.845c-.3.23.505-.509.55-.838l.866 3.375c.323 1.005 1.624.005 1.947 0l-3.234-2.025c-.293-.182-.646-.182-.94 0l-3.234 2.025c-.323.005-1.624-1.005-1.947 0l.866-3.375c-.05-.329-.325-.608-.55-.838l-2.362-1.845z" /></svg>
+                          <svg key={k} className={`w-2.5 h-2.5 ${k < Math.floor(course.rating) ? 'text-warning' : 'text-muted/30'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.95 1.69l1.07 3.292c.3.921-.005 1.603.3 1.902 0l-2.362 1.845c-.3.23.505-.509.55-.838l.866 3.375c.323 1.005 1.624.005 1.947 0l-3.234-2.025c-.293-.182-.646-.182-.94 0l-3.234 2.025c-.323.005-1.624-1.005-1.947 0l.866-3.375c-.05-.329-.325-.608-.55-.838l-2.362-1.845z" /></svg>
                         ))}
                       </div>
                     </div>
-                    <span className="text-sm font-bold text-accent">{course.price}</span>
+                    <span className="text-xs font-bold text-accent">{course.price}</span>
                   </div>
                 </div>
               ))}
@@ -358,27 +358,27 @@ export default function CommunityPage() {
         <div className="flex-1 px-4 py-6 animate-fade-in-up overflow-y-auto">
           {radarStep === 'input' && (
             <div>
-              <div className="text-center mb-6">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 mb-4 animate-float">
-                  <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9.348 14.651a3.75 3.75 0 0 1 0-5.303m5.304 0a3.75 3.75 0 0 1 0 5.303m-7.425 2.122a6.75 6.75 0 0 1 0-9.546m9.546 0a6.75 6.75 0 0 1 0 9.546M5.106 18.894c-3.808-3.808-3.808-9.98 0-13.789m13.788 0c3.808 3.808 3.808 9.981 0 13.79M12 12h.008v.007H12V12Z" /></svg>
+              <div className="text-center mb-4">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 mb-3 animate-float">
+                  <svg className="w-7 h-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9.348 14.651a3.75 3.75 0 0 1 0-5.303m5.304 0a3.75 3.75 0 0 1 0 5.303m-7.425 2.122a6.75 6.75 0 0 1 0-9.546m9.546 0a6.75 6.75 0 0 1 0 9.546M5.106 18.894c-3.808-3.808-3.808-9.98 0-13.789m13.788 0c3.808 3.808 3.808 9.981 0 13.79M12 12h.008v.007H12V12Z" /></svg>
                 </div>
-                <h2 className="text-xl font-bold text-gradient">身价雷达</h2>
-                <p className="text-muted text-sm mt-1">发现你的真实市场价值</p>
+                <h2 className="text-lg font-bold text-gradient">身价雷达</h2>
+                <p className="text-muted text-xs mt-1">发现你的真实市场价值</p>
               </div>
-              <div className="space-y-4 max-w-sm mx-auto">
+              <div className="space-y-3 max-w-sm mx-auto">
                 {[
                   { key: 'company', label: '公司名称', placeholder: '例如：字节跳动' },
                   { key: 'position', label: '职位名称', placeholder: '例如：高级产品经理' },
                   { key: 'salary', label: '当前月薪 (K)', placeholder: '例如：25' },
                 ].map((field) => (
                   <div key={field.key}>
-                    <label className="block text-sm text-muted mb-2">{field.label}</label>
-                    <input type="text" placeholder={field.placeholder} value={formData[field.key as keyof typeof formData]} onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })} className="w-full px-4 py-3.5 bg-white/5 rounded-xl text-foreground placeholder:text-muted/30 border border-white/5 focus:outline-none focus:border-primary/30 focus:bg-white/[0.07] transition-all" />
+                    <label className="block text-xs text-muted mb-1.5">{field.label}</label>
+                    <input type="text" placeholder={field.placeholder} value={formData[field.key as keyof typeof formData]} onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })} className="w-full px-3.5 py-3 bg-white/5 rounded-xl text-foreground placeholder:text-muted/30 border border-white/5 focus:outline-none focus:border-primary/30 focus:bg-white/[0.07] transition-all text-sm" />
                   </div>
                 ))}
                 <div>
-                  <label className="block text-sm text-muted mb-2">工作年限</label>
-                  <select value={formData.yearsOfExperience} onChange={(e) => setFormData({ ...formData, yearsOfExperience: e.target.value })} className="w-full px-4 py-3.5 bg-white/5 rounded-xl text-foreground border border-white/5 focus:outline-none focus:border-primary/30 transition-all appearance-none">
+                  <label className="block text-xs text-muted mb-1.5">工作年限</label>
+                  <select value={formData.yearsOfExperience} onChange={(e) => setFormData({ ...formData, yearsOfExperience: e.target.value })} className="w-full px-3.5 py-3 bg-white/5 rounded-xl text-foreground border border-white/5 focus:outline-none focus:border-primary/30 transition-all appearance-none text-sm">
                     <option value="" className="text-gray-400">请选择</option>
                     <option value="0-1" className="text-gray-400">0-1年</option>
                     <option value="1-3" className="text-gray-400">1-3年</option>
@@ -387,37 +387,37 @@ export default function CommunityPage() {
                     <option value="10+" className="text-gray-400">10年以上</option>
                   </select>
                 </div>
-                <button onClick={() => { if (formData.company && formData.position && formData.salary) { setScanProgress(0); setRadarStep('scanning'); } }} disabled={!formData.company || !formData.position || !formData.salary} className="w-full py-4 btn-gradient text-white font-semibold rounded-xl disabled:opacity-40 disabled:cursor-not-allowed mt-4">开始扫描</button>
+                <button onClick={() => { if (formData.company && formData.position && formData.salary) { setScanProgress(0); setRadarStep('scanning'); } }} disabled={!formData.company || !formData.position || !formData.salary} className="w-full py-3.5 btn-gradient text-white font-semibold rounded-xl disabled:opacity-40 disabled:cursor-not-allowed mt-3 text-sm">开始扫描</button>
               </div>
             </div>
           )}
 
           {radarStep === 'scanning' && (
-            <div className="flex flex-col items-center justify-center min-h-[60vh] animate-fade-in-scale">
-              <div className="relative w-56 h-56 mb-6">
+            <div className="flex flex-col items-center justify-center min-h-[50vh] animate-fade-in-scale">
+              <div className="relative w-44 h-44 mb-4">
                 <div className="absolute inset-0 rounded-full border border-primary/20 animate-breathe" />
-                <div className="absolute inset-6 rounded-full border border-primary/15" />
-                <div className="absolute inset-12 rounded-full border border-primary/10" />
+                <div className="absolute inset-4 rounded-full border border-primary/15" />
+                <div className="absolute inset-8 rounded-full border border-primary/10" />
                 <div className="absolute inset-0 rounded-full border-2 border-primary/50 animate-pulse-ring" />
                 <div className="absolute inset-0 animate-radar-scan"><div className="absolute top-1/2 left-1/2 w-1/2 h-0.5 bg-gradient-to-r from-primary via-accent to-transparent origin-left rounded-full" /></div>
-                <div className="absolute inset-0 flex items-center justify-center"><div className="w-5 h-5 rounded-full bg-gradient-to-r from-primary to-accent animate-pulse-glow" /></div>
+                <div className="absolute inset-0 flex items-center justify-center"><div className="w-4 h-4 rounded-full bg-gradient-to-r from-primary to-accent animate-pulse-glow" /></div>
               </div>
-              <div className="w-40 mb-3"><div className="h-1 bg-white/5 rounded-full overflow-hidden"><div className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-100" style={{ width: `${scanProgress}%` }} /></div></div>
-              <p className="text-foreground text-lg font-medium">{scanProgress}%</p>
-              <p className="text-muted text-sm mt-1">正在分析你的身价...</p>
+              <div className="w-32 mb-2"><div className="h-1 bg-white/5 rounded-full overflow-hidden"><div className="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-100" style={{ width: `${scanProgress}%` }} /></div></div>
+              <p className="text-foreground text-base font-medium">{scanProgress}%</p>
+              <p className="text-muted text-xs mt-1">正在分析你的身价...</p>
             </div>
           )}
 
           {radarStep === 'result' && (
-            <div className="pb-6">
-              <div className="text-center mb-6">
-                <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br from-accent/20 to-warning/20 mb-4 animate-float">
-                  <span className="text-3xl font-bold text-gradient-accent">{Math.floor(parseInt(formData.salary) * 1.3)}</span>
+            <div className="pb-4">
+              <div className="text-center mb-4">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/20 to-warning/20 mb-3 animate-float">
+                  <span className="text-2xl font-bold text-gradient-accent">{Math.floor(parseInt(formData.salary) * 1.3)}</span>
                 </div>
-                <h2 className="text-xl font-bold text-gradient">你的市场身价</h2>
+                <h2 className="text-base font-bold text-gradient">你的市场身价</h2>
               </div>
-              <div className="glass-card rounded-3xl p-8 mb-6">
-                <h3 className="text-base font-semibold text-foreground mb-6">薪资对比</h3>
+              <div className="glass-card rounded-2xl p-5 mb-4">
+                <h3 className="text-sm font-semibold text-foreground mb-4">薪资对比</h3>
                 {(() => {
                   const currentSalary = parseInt(formData.salary) || 12;
                   const avgSalary = Math.floor(currentSalary * 1.15) || 15;
@@ -428,14 +428,14 @@ export default function CommunityPage() {
                     <div>
                       {/* 左右对比条形图 */}
                       <div className="relative mb-4">
-                        <div className="flex gap-4 items-center">
+                        <div className="flex gap-3 items-center">
                           {/* 左侧 - 你的薪资 */}
                           <div className="flex-1">
-                            <div className="text-center mb-3">
-                              <p className="text-sm text-muted">你的薪资</p>
-                              <p className={`text-4xl font-bold ${isAbove ? 'text-success' : 'text-foreground'}`}>{currentSalary}w</p>
+                            <div className="text-center mb-2">
+                              <p className="text-xs text-muted">你的薪资</p>
+                              <p className={`text-2xl font-bold ${isAbove ? 'text-success' : 'text-foreground'}`}>{currentSalary}w</p>
                             </div>
-                            <div className="h-12 bg-white/5 rounded-full overflow-hidden">
+                            <div className="h-8 bg-white/5 rounded-full overflow-hidden">
                               <div
                                 className={`h-full rounded-full transition-all duration-1000 ${isAbove ? 'bg-gradient-to-r from-success to-emerald-500' : 'bg-gradient-to-r from-danger to-orange-500'}`}
                                 style={{ width: `${Math.min((currentSalary / 100) * 100, 100)}%` }}
@@ -444,17 +444,17 @@ export default function CommunityPage() {
                           </div>
 
                           {/* 中间 VS */}
-                          <div className="flex items-center justify-center px-4">
-                            <span className="text-lg font-bold text-muted">VS</span>
+                          <div className="flex items-center justify-center px-2">
+                            <span className="text-xs font-bold text-muted">VS</span>
                           </div>
 
                           {/* 右侧 - 行业平均 */}
                           <div className="flex-1">
-                            <div className="text-center mb-3">
-                              <p className="text-sm text-muted">行业平均</p>
-                              <p className="text-4xl font-bold text-primary">{avgSalary}w</p>
+                            <div className="text-center mb-2">
+                              <p className="text-xs text-muted">行业平均</p>
+                              <p className="text-2xl font-bold text-primary">{avgSalary}w</p>
                             </div>
-                            <div className="h-12 bg-white/5 rounded-full overflow-hidden">
+                            <div className="h-8 bg-white/5 rounded-full overflow-hidden">
                               <div
                                 className="h-full bg-gradient-to-r from-primary to-primary-light rounded-full transition-all duration-1000"
                                 style={{ width: `${Math.min((avgSalary / 100) * 100, 100)}%` }}
