@@ -37,7 +37,6 @@ export default function CommunityPage() {
   const [radarStep, setRadarStep] = useState<RadarStep>('input');
   const [formData, setFormData] = useState({ company: '', position: '', salary: '', yearsOfExperience: '' });
   const [scanProgress, setScanProgress] = useState(0);
-  const [expandedSalary, setExpandedSalary] = useState(false);
 
   useEffect(() => {
     if (moonActive) {
@@ -58,7 +57,7 @@ export default function CommunityPage() {
     }
   }, [radarStep]);
 
-  const handleProvinceClick = (name: string, workers: number) => {
+  const handleProvinceClick = (name: string) => {
     setSelectedProvince(name);
   };
 
@@ -173,7 +172,7 @@ export default function CommunityPage() {
 
               <ChinaMapGeo
                 moonActive={moonActive}
-                onProvinceClick={handleProvinceClick}
+                onProvinceClick={(name) => handleProvinceClick(name)}
               />
 
               {moonActive && (
@@ -417,77 +416,56 @@ export default function CommunityPage() {
                 </div>
                 <h2 className="text-xl font-bold text-gradient">你的市场身价</h2>
               </div>
-              <div className="glass-card rounded-2xl p-5 mb-4">
-                <h3 className="text-sm font-medium text-muted mb-4">薪资对比</h3>
-                <div className="space-y-4">
-                  {(() => {
-                    const currentSalary = parseInt(formData.salary);
-                    const avgSalary = Math.floor(currentSalary * 1.15);
-                    const diffPercent = Math.round(((currentSalary - avgSalary) / avgSalary) * 100);
-                    const isAbove = diffPercent > 0;
+              <div className="glass-card rounded-3xl p-8 mb-6">
+                <h3 className="text-base font-semibold text-foreground mb-6">薪资对比</h3>
+                {(() => {
+                  const currentSalary = parseInt(formData.salary) || 12;
+                  const avgSalary = Math.floor(currentSalary * 1.15) || 15;
+                  const diffPercent = Math.round(((currentSalary - avgSalary) / avgSalary) * 100);
+                  const isAbove = diffPercent > 0;
 
-                    return (
-                      <div>
-                        {/* 对比标题 */}
-                        <div className="flex items-center gap-2 mb-4">
-                          <h4 className="font-semibold text-foreground">你的薪资 vs 行业平均</h4>
-                          <span className={`px-3 py-1 rounded-lg text-xs font-medium ${isAbove ? 'bg-success/20 text-success' : 'bg-danger/20 text-danger'}`}>
-                            {isAbove ? `超出 ${diffPercent}%` : `低于 ${Math.abs(diffPercent)}%`}
-                          </span>
-                        </div>
-
-                        {/* 对比条形图 */}
-                        <div className="relative h-8 bg-white/5 rounded-full overflow-hidden">
-                          {/* 背景槽 - 行业平均 */}
-                          <div className="absolute inset-0 flex items-center">
-                            <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-white rounded-full" />
+                  return (
+                    <div>
+                      {/* 左右对比条形图 */}
+                      <div className="relative mb-4">
+                        <div className="flex gap-4 items-center">
+                          {/* 左侧 - 你的薪资 */}
+                          <div className="flex-1">
+                            <div className="text-center mb-3">
+                              <p className="text-sm text-muted">你的薪资</p>
+                              <p className={`text-4xl font-bold ${isAbove ? 'text-success' : 'text-foreground'}`}>{currentSalary}w</p>
+                            </div>
+                            <div className="h-12 bg-white/5 rounded-full overflow-hidden">
+                              <div
+                                className={`h-full rounded-full transition-all duration-1000 ${isAbove ? 'bg-gradient-to-r from-success to-emerald-500' : 'bg-gradient-to-r from-danger to-orange-500'}`}
+                                style={{ width: `${Math.min((currentSalary / 100) * 100, 100)}%` }}
+                              />
+                            </div>
                           </div>
 
-                          {/* 当前薪资条 */}
-                          <div className="h-full relative">
-                            <div
-                              className={`h-full rounded-full transition-all duration-1000 ${isAbove ? 'bg-gradient-to-r from-success to-emerald-500' : 'bg-gradient-to-r from-danger to-orange-500'}`}
-                              style={{
-                                width: `${Math.min((currentSalary / 80) * 100, 100)}%`,
-                                marginLeft: isAbove ? '50%' : `${Math.min((currentSalary / 80) * 100, 100)}%`
-                              }}
-                            />
+                          {/* 中间 VS */}
+                          <div className="flex items-center justify-center px-4">
+                            <span className="text-lg font-bold text-muted">VS</span>
                           </div>
 
-                          {/* 行业平均条 */}
-                          <div
-                              className="absolute top-0 bottom-0 h-8 bg-gradient-to-r from-primary to-primary-light rounded-full transition-all duration-1000"
-                              style={{ left: `${Math.min((avgSalary / 80) * 100, 100)}%`, width: '2px' }}
-                          />
-                        </div>
-
-                        {/* 详细数据 */}
-                        <div className="grid grid-cols-2 gap-4 mt-6">
-                          <div className="glass-card rounded-xl p-4">
-                            <p className="text-xs text-muted mb-1">你的当前薪资</p>
-                            <p className="text-xl font-bold text-foreground">{currentSalary}K</p>
-                          </div>
-                          <div className="glass-card rounded-xl p-4">
-                            <p className="text-xs text-muted mb-1">行业平均薪资</p>
-                            <p className="text-xl font-bold text-primary">{avgSalary}K</p>
+                          {/* 右侧 - 行业平均 */}
+                          <div className="flex-1">
+                            <div className="text-center mb-3">
+                              <p className="text-sm text-muted">行业平均</p>
+                              <p className="text-4xl font-bold text-primary">{avgSalary}w</p>
+                            </div>
+                            <div className="h-12 bg-white/5 rounded-full overflow-hidden">
+                              <div
+                                className="h-full bg-gradient-to-r from-primary to-primary-light rounded-full transition-all duration-1000"
+                                style={{ width: `${Math.min((avgSalary / 100) * 100, 100)}%` }}
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
-                    );
-                  })()}
-                </div>
-              </div>
-              <div className="glass-card rounded-2xl p-5 mb-4">
-                <h3 className="text-sm font-medium text-muted mb-3">能力提升建议</h3>
-                <div className="space-y-2">
-                  {[
-                    { skill: '数据分析能力', impact: '+15%', icon: '📊' },
-                    { skill: '项目管理经验', impact: '+12%', icon: '🎯' },
-                    { skill: '团队协作工具', impact: '+8%', icon: '🤝' },
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center justify-between p-3 bg-white/5 rounded-xl"><div className="flex items-center gap-2"><span className="text-lg">{item.icon}</span><span className="text-sm">{item.skill}</span></div><span className="text-accent font-semibold text-sm">{item.impact}</span></div>
-                  ))}
-                </div>
+                    </div>
+                  );
+                })()}
               </div>
               <div className="flex gap-3">
                 <button onClick={() => setRadarStep('input')} className="flex-1 py-3 bg-white/5 text-foreground font-medium rounded-xl border border-white/5 hover:bg-white/10 transition-colors">重新评估</button>
