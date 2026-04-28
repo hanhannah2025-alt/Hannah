@@ -173,7 +173,6 @@ export default function CommunityPage() {
               <ChinaMapGeo
                 moonActive={moonActive}
                 onProvinceClick={handleProvinceClick}
-                provinceWorkers={provinceWorkers}
               />
 
               {moonActive && (
@@ -229,8 +228,16 @@ export default function CommunityPage() {
       {activeTab === 'salary' && (
         <div className="flex-1 px-4 py-6 animate-fade-in-up overflow-y-auto pb-28">
           <div className="text-center mb-6">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-success/20 to-primary/20 mb-4 animate-float">
-              <svg className="w-8 h-8 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 mb-4 animate-float">
+              <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" strokeWidth={1.5}>
+                <defs>
+                  <linearGradient id="boltGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#6366F1" />
+                    <stop offset="100%" stopColor="#F472B6" />
+                  </linearGradient>
+                </defs>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" stroke="url(#boltGradient)" />
+              </svg>
             </div>
             <h2 className="text-xl font-bold text-gradient">涨薪路径</h2>
             <p className="text-muted text-sm mt-1">精选课程，加速成长</p>
