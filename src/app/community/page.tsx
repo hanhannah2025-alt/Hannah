@@ -230,7 +230,7 @@ export default function CommunityPage() {
         <div className="flex-1 px-4 py-6 animate-fade-in-up overflow-y-auto pb-28">
           <div className="text-center mb-6">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-success/20 to-primary/20 mb-4 animate-float">
-              <svg className="w-8 h-8 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 0 1 5.814-5.519l2.74-2.74a1.5 1.5 0 0 0 0-2.12l-2.74-2.74a1.5 1.5 0 0 0-2.12 0l-5.814 5.519a11.95 11.95 0 0 1-5.814-5.519l-2.74-2.74a1.5 1.5 0 0 0-2.12 0l-2.74 2.74a1.5 1.5 0 0 0 0 2.12l2.74 2.74a11.95 11.95 0 0 1 5.814 5.519ZM16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Z" /></svg>
+              <svg className="w-8 h-8 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
             </div>
             <h2 className="text-xl font-bold text-gradient">涨薪路径</h2>
             <p className="text-muted text-sm mt-1">精选课程，加速成长</p>
