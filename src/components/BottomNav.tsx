@@ -2,6 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState, useEffect } from 'react';
+
+interface User {
+  id: string;
+  username: string;
+  phone: string;
+  avatar: string;
+}
 
 const navItems = [
   { href: '/intelligence', label: '情报', icon: 'flame' },
@@ -27,14 +35,23 @@ const icons: Record<string, React.ReactNode> = {
     </svg>
   ),
   user: (
-    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <circle cx="12" cy="7" r="3" />
+      <path d="M6 21c0-3 2.5-6 6-6s6 3 6 6" strokeLinecap="round" />
     </svg>
   ),
 };
 
 export default function BottomNav() {
   const pathname = usePathname();
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('currentUser');
+    if (stored) {
+      setUser(JSON.parse(stored));
+    }
+  }, []);
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 safe-area-bottom">
@@ -66,31 +83,43 @@ export default function BottomNav() {
         {/* 中间AI简历按钮 */}
         <Link
           href="/resume"
-          className="relative -mt-8 flex flex-col items-center justify-center group"
+          className="relative -mt-6 flex flex-col items-center justify-center group"
         >
           {/* 外发光效果 */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-warning rounded-full blur-xl opacity-60 group-hover:opacity-80 transition-opacity scale-110" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-warning rounded-2xl blur-2xl opacity-40 animate-pulse" />
+          <div className="absolute inset-[-4px] bg-gradient-to-r from-accent to-warning rounded-2xl blur-xl opacity-50 animate-pulse" style={{ animationDelay: '0.5s' }} />
+          <div className="absolute inset-[-2px] bg-gradient-to-r from-primary to-accent rounded-2xl blur-lg opacity-60 animate-pulse" style={{ animationDelay: '1s' }} />
+
+          {/* 旋转光晕 */}
+          <div className="absolute inset-[-1px] rounded-2xl animate-spin-slow">
+            <div className="w-full h-full rounded-2xl bg-gradient-to-r from-primary via-accent to-warning opacity-20" />
+          </div>
 
           {/* 主按钮 */}
-          <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-primary via-accent to-warning p-[3px] shadow-lg shadow-accent/30 group-hover:shadow-accent/50 transition-all group-hover:scale-110 group-active:scale-95">
-            <div className="w-full h-full rounded-full bg-[#070B14] flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-lg font-bold bg-gradient-to-r from-primary via-accent to-warning bg-clip-text text-transparent">
-                  AI
+          <div className="relative px-4 py-3 rounded-2xl bg-gradient-to-br from-primary via-accent to-warning shadow-xl shadow-accent/40 group-hover:shadow-accent/60 group-hover:scale-105 group-active:scale-95 transition-all animate-float">
+            <div className="flex flex-col items-center justify-center overflow-hidden relative">
+              {/* AI文字 - 科技活力白色样式 */}
+              <div className="text-center relative z-10">
+                <div className="text-2xl font-extrabold tracking-wider relative inline-flex items-center gap-0.5" style={{
+                  fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+                  textShadow: `
+                    0 0 8px rgba(255, 255, 255, 0.6),
+                    0 0 16px rgba(255, 255, 255, 0.4),
+                    0 0 24px rgba(255, 255, 255, 0.2)
+                  `,
+                }}>
+                  <span className="relative z-10">AI</span>
                 </div>
-                <div className="text-[8px] text-white/80 font-medium -mt-0.5">简历</div>
+                <div className="text-[10px] text-white font-bold tracking-widest mt-0.5 uppercase">简历</div>
               </div>
             </div>
           </div>
-
-          {/* 闪烁动画点 */}
-          <div className="absolute top-1 right-1 w-2 h-2 bg-warning rounded-full animate-ping" />
-          <div className="absolute top-1 right-1 w-2 h-2 bg-warning rounded-full" />
         </Link>
 
         {/* 右侧两个按钮 */}
         {navItems.slice(2).map((item) => {
           const isActive = pathname === item.href;
+          const isProfile = item.href === '/profile';
 
           return (
             <Link key={item.href} href={item.href} className="relative flex flex-col items-center justify-center gap-1 py-2 px-4 rounded-2xl transition-all duration-300 group">
@@ -98,12 +127,18 @@ export default function BottomNav() {
               {isActive && <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-8 h-1 rounded-full bg-gradient-to-r from-primary to-accent" />}
 
               <div className={`relative transition-all duration-300 ${isActive ? 'text-accent scale-110' : 'text-muted group-hover:text-foreground group-hover:scale-105'}`}>
-                {icons[item.icon]}
+                {isProfile && user ? (
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                    <span className="text-[10px] font-bold text-white">{user.avatar}</span>
+                  </div>
+                ) : (
+                  icons[item.icon]
+                )}
                 {isActive && <div className="absolute inset-0 animate-pulse-glow rounded-full" />}
               </div>
 
               <span className={`text-[10px] font-medium transition-all duration-300 ${isActive ? 'text-accent' : 'text-muted group-hover:text-foreground'}`}>
-                {item.label}
+                {isProfile && user ? '我的' : item.label}
               </span>
             </Link>
           );

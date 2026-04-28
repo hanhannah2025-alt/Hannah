@@ -191,6 +191,25 @@ body {
   animation: wave 1s ease-in-out infinite;
 }
 
+/* 新增动画 */
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes scan {
+  0% { opacity: 0; transform: translateX(-100%); }
+  100% { opacity: 1; transform: translateX(100%); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.animate-scan {
+  animation: scan 2s ease-in-out infinite;
+}
+
 /* ===== 玻璃态卡片 ===== */
 
 .glass-card {
