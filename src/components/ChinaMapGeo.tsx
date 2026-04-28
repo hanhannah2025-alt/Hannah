@@ -538,26 +538,6 @@ export default function ChinaMapGeo({
 
               </svg>
 
-      {/* 图例 */}
-      <div className="absolute bottom-3 left-3 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm rounded-lg px-2.5 py-1.5">
-        <span className="text-[9px] text-muted">密度：</span>
-        <div className="flex items-center gap-0.5">
-          <div className="w-3 h-2.5 rounded-sm" style={{ backgroundColor: '#1E1B4B' }} />
-          <div className="w-3 h-2.5 rounded-sm" style={{ backgroundColor: '#2563EB' }} />
-          <div className="w-3 h-2.5 rounded-sm" style={{ backgroundColor: '#3B82F6' }} />
-          <div className="w-3 h-2.5 rounded-sm" style={{ backgroundColor: '#6366F1' }} />
-          <div className="w-3 h-2.5 rounded-sm" style={{ backgroundColor: '#8B5CF6' }} />
-        </div>
-        <span className="text-[9px] text-muted">低→高</span>
-      </div>
-
-      {moonActive && (
-        <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-warning/20 backdrop-blur-sm rounded-lg px-2.5 py-1.5">
-          <div className="w-1.5 h-1.5 rounded-full bg-warning animate-pulse" />
-          <span className="text-[9px] text-warning font-medium">加班亮点</span>
-        </div>
-      )}
-
       {/* 行业分布侧边栏 */}
       {selectedProvinceData && (
         <div className="absolute left-0 top-0 bottom-0 w-48 bg-[#070B14]/95 backdrop-blur-xl border-r border-white/10 p-3 overflow-y-auto animate-fade-in-up z-10">
