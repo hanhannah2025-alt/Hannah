@@ -23,7 +23,7 @@ const provinceWorkers: Record<string, number> = {
   '西藏': 8000, '台湾': 35000, '香港': 85000, '澳门': 12000,
 };
 
-type Tab = 'map' | 'radar';
+type Tab = 'map' | 'radar' | 'salary';
 type RadarStep = 'input' | 'scanning' | 'result';
 
 export default function CommunityPage() {
@@ -97,6 +97,10 @@ export default function CommunityPage() {
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9.348 14.651a3.75 3.75 0 0 1 0-5.303m5.304 0a3.75 3.75 0 0 1 0 5.303m-7.425 2.122a6.75 6.75 0 0 1 0-9.546m9.546 0a6.75 6.75 0 0 1 0 9.546M5.106 18.894c-3.808-3.808-3.808-9.98 0-13.789m13.788 0c3.808 3.808 3.808 9.981 0 13.79M12 12h.008v.007H12V12Z" /></svg>
             身价雷达
           </button>
+          <button onClick={() => setActiveTab('salary')} className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${activeTab === 'salary' ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/20' : 'bg-white/5 text-muted border border-white/5 hover:bg-white/10'}`}>
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+            涨薪路径
+          </button>
         </div>
       </header>
 
@@ -169,6 +173,7 @@ export default function CommunityPage() {
               <ChinaMapGeo
                 moonActive={moonActive}
                 onProvinceClick={handleProvinceClick}
+                provinceWorkers={provinceWorkers}
               />
 
               {moonActive && (
@@ -216,6 +221,112 @@ export default function CommunityPage() {
                 <p className="text-xs opacity-70">{moonActive ? '点击结束' : '点亮让同行看到'}</p>
               </div>
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* 涨薪路径内容 */}
+      {activeTab === 'salary' && (
+        <div className="flex-1 px-4 py-6 animate-fade-in-up overflow-y-auto pb-28">
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-success/20 to-primary/20 mb-4 animate-float">
+              <svg className="w-8 h-8 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 0 1 5.814-5.519l2.74-2.74a1.5 1.5 0 0 0 0-2.12l-2.74-2.74a1.5 1.5 0 0 0-2.12 0l-5.814 5.519a11.95 11.95 0 0 1-5.814-5.519l-2.74-2.74a1.5 1.5 0 0 0-2.12 0l-2.74 2.74a1.5 1.5 0 0 0 0 2.12l2.74 2.74a11.95 11.95 0 0 1 5.814 5.519ZM16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Z" /></svg>
+            </div>
+            <h2 className="text-xl font-bold text-gradient">涨薪路径</h2>
+            <p className="text-muted text-sm mt-1">精选课程，加速成长</p>
+          </div>
+
+          {/* 好课优享 */}
+          <div className="mb-6">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-1 h-5 rounded-full bg-gradient-to-b from-primary to-accent" />
+              <h3 className="font-semibold text-foreground">好课优享</h3>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { title: '产品经理进阶', students: '12.8K', rating: 4.9, price: '¥399', tags: ['热门', '实战'] },
+                { title: '数据分析实战', students: '8.5K', rating: 4.8, price: '¥499', tags: ['Python', 'SQL'] },
+                { title: '运营增长策略', students: '6.2K', rating: 4.7, price: '¥299', tags: ['增长', '案例'] },
+                { title: '项目管理PMP', students: '9.1K', rating: 4.9, price: '¥599', tags: ['认证', '管理'] },
+              ].map((course, i) => (
+                <div key={i} className="glass-card rounded-2xl p-4 group card-hover-lift">
+                  <div className="flex gap-2 mb-3">
+                    {course.tags.map((tag, j) => (
+                      <span key={j} className="px-2 py-0.5 bg-primary/20 text-primary text-[10px] rounded-lg">{tag}</span>
+                    ))}
+                  </div>
+                  <h4 className="font-medium text-sm text-foreground mb-2 truncate">{course.title}</h4>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1">
+                      <span className="text-xs text-muted">{course.students}</span>
+                      <div className="flex gap-0.5">
+                        {[...Array(5)].map((_, k) => (
+                          <svg key={k} className={`w-2.5 h-2.5 ${k < Math.floor(course.rating) ? 'text-warning' : 'text-muted/30'}`} fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.95 1.69l1.07 3.292c.3.921-.005 1.603.3 1.902 0l-2.362 1.845c-.3.23.505-.509.55-.838l.866 3.375c.323 1.005 1.624.005 1.947 0l-3.234-2.025c-.293-.182-.646-.182-.94 0l-3.234 2.025c-.323.005-1.624-1.005-1.947 0l.866-3.375c-.05-.329-.325-.608-.55-.838l-2.362-1.845z" /></svg>
+                        ))}
+                      </div>
+                    </div>
+                    <span className="text-sm font-bold text-accent">{course.price}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 技能红利 */}
+          <div className="mb-6">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-1 h-5 rounded-full bg-gradient-to-b from-accent to-warning" />
+              <h3 className="font-semibold text-foreground">技能红利</h3>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { title: 'Python数据分析', level: '初级', progress: 75, color: 'from-blue-500 to-cyan-500' },
+                { title: '机器学习入门', level: '中级', progress: 45, color: 'from-purple-500 to-pink-500' },
+                { title: '前端开发进阶', level: '高级', progress: 60, color: 'from-orange-500 to-red-500' },
+                { title: '云计算DevOps', level: '高级', progress: 30, color: 'from-emerald-500 to-teal-500' },
+              ].map((skill, i) => (
+                <div key={i} className="glass-card rounded-2xl p-4 group card-hover-lift">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="font-medium text-sm text-foreground">{skill.title}</h4>
+                    <span className="px-2 py-0.5 bg-white/5 text-muted text-[10px] rounded-lg">{skill.level}</span>
+                  </div>
+                  <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                    <div className={`h-full bg-gradient-to-r ${skill.color} rounded-full transition-all duration-1000 group-hover:scale-x-105`} style={{ width: `${skill.progress}%` }} />
+                  </div>
+                  <p className="text-[10px] text-muted mt-2">{skill.progress}% 同行掌握</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 职场杠杆 */}
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-1 h-5 rounded-full bg-gradient-to-b from-warning to-danger" />
+              <h3 className="font-semibold text-foreground">职场杠杆</h3>
+            </div>
+            <div className="space-y-3">
+              {[
+                { title: '跳槽策略', description: '平均涨薪25%，掌握最佳时机', icon: '🚀', count: '2.3K' },
+                { title: '晋升谈判', description: '数据说话，争取合理涨幅', icon: '💬', count: '1.8K' },
+                { title: '证书加成', description: '专业认证提升竞争力', icon: '📜', count: '3.1K' },
+                { title: '人脉网络', description: '拓展圈子，获取机会', icon: '🤝', count: '4.2K' },
+              ].map((item, i) => (
+                <div key={i} className="glass-card rounded-2xl p-4 flex items-center gap-4 group card-hover-lift">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                    {item.icon}
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-medium text-sm text-foreground mb-1">{item.title}</h4>
+                    <p className="text-xs text-muted">{item.description}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-[10px] text-muted">已学习</p>
+                    <p className="text-sm font-bold text-accent">{item.count}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
