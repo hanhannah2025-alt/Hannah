@@ -273,8 +273,8 @@ export default function ChinaMapGeo({
     const fetchGeoData = async () => {
       try {
         setLoading(true);
-        // 获取中国省级行政区数据（包含海南及南海诸岛）
-        const response = await fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json');
+        // 从本地文件加载中国省级行政区数据
+        const response = await fetch('/china-map.json');
         if (!response.ok) throw new Error('Failed to fetch GeoJSON');
         const data = await response.json();
         setGeoData(data);
