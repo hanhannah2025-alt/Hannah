@@ -299,12 +299,12 @@ export default function IntelligencePage() {
         )}
 
         {/* 标签筛选 */}
-        <div className="px-3 sm:px-4 pb-3 flex gap-1.5 sm:gap-2 overflow-x-auto scrollbar-hide">
+        <div className="px-2 sm:px-3 pb-2 sm:pb-3 flex gap-1 sm:gap-2 overflow-x-auto scrollbar-hide">
           {filters.map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-[10px] sm:text-sm whitespace-nowrap font-medium transition-all duration-300 ${
+              className={`px-2 sm:px-4 py-1 sm:py-2 rounded-full text-[12px] sm:text-[15px] whitespace-nowrap font-medium transition-all duration-300 ${
                 activeFilter === filter
                   ? 'bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/20'
                   : 'bg-white/5 text-muted border border-white/5 hover:bg-white/10 hover:text-foreground'
