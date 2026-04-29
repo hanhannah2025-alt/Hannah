@@ -17,6 +17,7 @@ interface FeedCardProps {
   nickname?: string;
   likes?: number;
   comments?: number;
+  onClick?: () => void;
 }
 
 const tagStyles = {
@@ -56,12 +57,19 @@ export default function FeedCard({
   nickname = '匿名用户',
   likes = 0,
   comments = 0,
+  onClick,
 }: FeedCardProps) {
   const [isPressed, setIsPressed] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  const [isBookmarked, setIsBookmarked] = useState(false);
   const gradient = cardGradients[index % cardGradients.length];
   const avatarGradient = avatarColors[index % avatarColors.length];
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsPressed(true);
+    setTimeout(() => setIsPressed(false), 150);
+    onClick?.();
+  };
 
   return (
     <div
@@ -73,7 +81,8 @@ export default function FeedCard({
       }}
     >
       <div
-        className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${gradient} p-[1px] card-hover-lift`}
+        className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${gradient} p-[1px] card-hover-lift cursor-pointer`}
+        onClick={onClick}
         onMouseDown={() => setIsPressed(true)}
         onMouseUp={() => setIsPressed(false)}
         onMouseLeave={() => setIsPressed(false)}
@@ -130,7 +139,7 @@ export default function FeedCard({
 
             {/* 内容描述 */}
             {content && (
-              <p className="text-muted/80 text-xs mb-3 line-clamp-3 leading-relaxed">
+              <p className="text-muted/80 text-xs mb-3 line-clamp-2 leading-relaxed">
                 {content}
               </p>
             )}
@@ -145,74 +154,50 @@ export default function FeedCard({
               </p>
             )}
 
-            {/* 用户信息和互动 */}
+            {/* 用户头像和昵称 */}
             <div className="flex items-center justify-between pt-2 border-t border-white/5">
-              {/* 用户头像和昵称 */}
               <div className="flex items-center gap-2">
-                <div className={`w-7 h-7 rounded-full bg-gradient-to-br ${avatarGradient} flex items-center justify-center flex-shrink-0`}>
-                  <span className="text-white text-[10px] font-bold">
-                    {nickname.charAt(0)}
-                  </span>
-                </div>
-                <span className="text-muted text-[10px] truncate max-w-[60px]">
+                {avatar ? (
+                  <img src={avatar} alt={nickname} className="w-7 h-7 rounded-full object-cover flex-shrink-0" />
+                ) : (
+                  <div className={`w-7 h-7 rounded-full bg-gradient-to-br ${avatarGradient} flex items-center justify-center flex-shrink-0`}>
+                    <span className="text-white text-[10px] font-bold">
+                      {nickname.charAt(0)}
+                    </span>
+                  </div>
+                )}
+                <span className="text-muted text-[10px] truncate">
                   {nickname}
                 </span>
               </div>
 
-              {/* 互动按钮 */}
-              <div className="flex items-center gap-3">
-                {/* 点赞 */}
-                <button
-                  onClick={() => setIsLiked(!isLiked)}
-                  className="flex items-center gap-1 transition-all active:scale-90"
+              {/* 点赞按钮 */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsLiked(!isLiked);
+                }}
+                className="flex items-center gap-1 transition-all active:scale-90"
+              >
+                <svg
+                  className={`w-4 h-4 transition-colors ${isLiked ? 'text-accent' : 'text-muted'}`}
+                  fill={isLiked ? 'currentColor' : 'none'}
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
                 >
-                  <svg
-                    className={`w-4 h-4 transition-colors ${isLiked ? 'text-accent' : 'text-muted'}`}
-                    fill={isLiked ? 'currentColor' : 'none'}
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={1.5}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-                    />
-                  </svg>
-                  <span className={`text-[10px] ${isLiked ? 'text-accent' : 'text-muted'}`}>
-                    {likes}
-                  </span>
-                </button>
-
-                {/* 评论 */}
-                <div className="flex items-center gap-1">
-                  <svg className="w-4 h-4 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
-                  </svg>
-                  <span className="text-[10px] text-muted">{comments}</span>
-                </div>
-
-                {/* 收藏 */}
-                <button
-                  onClick={() => setIsBookmarked(!isBookmarked)}
-                  className="transition-all active:scale-90"
-                >
-                  <svg
-                    className={`w-4 h-4 transition-colors ${isBookmarked ? 'text-warning' : 'text-muted'}`}
-                    fill={isBookmarked ? 'currentColor' : 'none'}
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={1.5}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z"
-                    />
-                  </svg>
-                </button>
-              </div>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
+                  />
+                </svg>
+                <span className={`text-[10px] ${isLiked ? 'text-accent' : 'text-muted'}`}>
+                  {likes}
+                </span>
+              </button>
             </div>
+
           </div>
         </div>
       </div>

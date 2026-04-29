@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import FeedCard from '@/components/FeedCard';
+import FeedCardDetail from '@/components/FeedCardDetail';
 
 // 行业分类
 const industries = {
@@ -119,6 +120,8 @@ export default function IntelligencePage() {
   const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
   const [selectedCity, setSelectedCity] = useState<string>('北京');
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showDetail, setShowDetail] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<any>(null);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -331,6 +334,10 @@ export default function IntelligencePage() {
             nickname={item.nickname}
             likes={item.likes}
             comments={item.comments}
+            onClick={() => {
+              setSelectedCard(item);
+              setShowDetail(true);
+            }}
           />
         ))}
       </div>
@@ -345,6 +352,18 @@ export default function IntelligencePage() {
           </div>
           <p className="text-muted">没有找到相关内容</p>
         </div>
+      )}
+
+      {/* 卡片详情弹窗 */}
+      {selectedCard && (
+        <FeedCardDetail
+          isOpen={showDetail}
+          onClose={() => {
+            setShowDetail(false);
+            setSelectedCard(null);
+          }}
+          data={selectedCard}
+        />
       )}
     </div>
   );
