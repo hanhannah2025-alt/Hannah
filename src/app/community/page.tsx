@@ -70,19 +70,19 @@ export default function CommunityPage() {
       </div>
 
       {/* 顶部 */}
-      <header className="sticky top-0 z-20 bg-[#070B14]/80 backdrop-blur-xl border-b border-white/5 px-4 py-4">
-        <div className="flex items-center justify-between mb-4">
+      <header className="sticky top-0 z-20 bg-[#070B14]/80 backdrop-blur-xl border-b border-white/5 px-3 sm:px-4 py-3 sm:py-4">
+        <div className="flex items-center justify-between mb-3 sm:mb-4">
           <div>
-            <h1 className="text-xl font-bold text-gradient">行业社区</h1>
-            <p className="text-xs text-muted mt-0.5">看到你的同行在哪里</p>
+            <h1 className="text-lg sm:text-xl font-bold text-gradient">行业社区</h1>
+            <p className="text-[10px] sm:text-xs text-muted mt-0.5">看到你的同行在哪里</p>
           </div>
           {moonActive && activeTab === 'map' && (
-            <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-accent/20 to-warning/20 rounded-full animate-fade-in-up border border-accent/20">
+            <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-accent/20 to-warning/20 rounded-full animate-fade-in-up border border-accent/20">
               <div className="relative">
-                <div className="w-2.5 h-2.5 rounded-full bg-accent" />
-                <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-accent animate-ping" />
+                <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-accent" />
+                <div className="absolute inset-0 w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-accent animate-ping" />
               </div>
-              <span className="text-sm text-accent font-semibold">{overtimeCount.toLocaleString()} 人加班中</span>
+              <span className="text-[10px] sm:text-sm text-accent font-semibold">{overtimeCount.toLocaleString()} 人加班中</span>
             </div>
           )}
         </div>
@@ -108,13 +108,13 @@ export default function CommunityPage() {
       {activeTab === 'map' && (
         <div className="flex-1 relative animate-fade-in-up overflow-y-auto pb-28">
           {/* 薪资统计 */}
-          <div className="px-4 pt-4">
-            <div className="glass-card rounded-2xl p-4 mb-4">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="font-semibold text-sm">薪资分布统计</h3>
-                <div className="flex gap-1">
+          <div className="px-3 sm:px-4 pt-3 sm:pt-4">
+            <div className="glass-card rounded-2xl p-3 sm:p-4 mb-3 sm:mb-4">
+              <div className="flex flex-col sm:flex-row items-center justify-between mb-3 gap-2">
+                <h3 className="font-semibold text-xs sm:text-sm">薪资分布统计</h3>
+                <div className="flex gap-0.5 sm:gap-1">
                   {['全部', '0-1年', '1-3年', '3-5年', '5-10年'].map((y) => (
-                    <button key={y} onClick={() => setSelectedYears(y)} className={`px-2 py-1 text-[10px] rounded-lg transition-all ${selectedYears === y ? 'bg-primary text-white' : 'bg-white/5 text-muted'}`}>
+                    <button key={y} onClick={() => setSelectedYears(y)} className={`px-1.5 sm:px-2 py-1 sm:py-1 text-[9px] sm:text-[10px] rounded-lg transition-all ${selectedYears === y ? 'bg-primary text-white' : 'bg-white/5 text-muted'}`}>
                       {y}
                     </button>
                   ))}
@@ -122,51 +122,51 @@ export default function CommunityPage() {
               </div>
 
               {/* 图表 */}
-              <div className="h-40 flex items-end justify-around gap-2">
+              <div className="h-32 sm:h-40 flex items-end justify-around gap-1 sm:gap-2">
                 {salaryData.map((item, i) => {
                   const maxVal = 100;
                   const show = selectedYears === '全部' || selectedYears === item.years;
                   return (
-                    <div key={i} className={`flex flex-col items-center gap-1 transition-all duration-300 ${show ? 'opacity-100' : 'opacity-30'}`}>
-                      <div className="relative w-10 flex flex-col items-center justify-end h-28">
+                    <div key={i} className={`flex flex-col items-center gap-0.5 sm:gap-1 transition-all duration-300 ${show ? 'opacity-100' : 'opacity-30'}`}>
+                      <div className="relative w-8 sm:w-10 flex flex-col items-center justify-end h-20 sm:h-28">
                         <div className="absolute w-full rounded-t bg-gradient-to-t from-accent/60 to-accent transition-all duration-500" style={{ bottom: `${(item.top10 / maxVal) * 100}%`, height: `${((item.top10 - item.avg) / maxVal) * 100}%` }} />
                         <div className="absolute w-full bg-gradient-to-t from-primary to-primary-light transition-all duration-500" style={{ bottom: `${(item.avg / maxVal) * 100}%`, height: `${((item.avg - item.bottom10) / maxVal) * 100}%` }} />
                         <div className="absolute w-full rounded-b bg-gradient-to-b from-primary/30 to-primary/10 transition-all duration-500" style={{ bottom: 0, height: `${(item.bottom10 / maxVal) * 100}%` }} />
                       </div>
-                      <span className="text-[10px] text-muted whitespace-nowrap">{item.years}</span>
-                      <span className="text-xs font-bold text-primary">{item.avg}K</span>
+                      <span className="text-[9px] sm:text-[10px] text-muted whitespace-nowrap">{item.years}</span>
+                      <span className="text-[10px] sm:text-xs font-bold text-primary">{item.avg}K</span>
                     </div>
                   );
                 })}
               </div>
 
-              <div className="flex justify-center gap-4 mt-3 pt-3 border-t border-white/5">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-3 h-3 rounded bg-gradient-to-r from-primary to-primary-light" />
-                  <span className="text-[10px] text-muted">平均薪资</span>
+              <div className="flex justify-center gap-3 sm:gap-4 mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-white/5">
+                <div className="flex items-center gap-1">
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded bg-gradient-to-r from-primary to-primary-light" />
+                  <span className="text-[9px] sm:text-[10px] text-muted">平均薪资</span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-3 h-3 rounded bg-accent" />
-                  <span className="text-[10px] text-muted">Top 10%</span>
+                <div className="flex items-center gap-1">
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded bg-accent" />
+                  <span className="text-[9px] sm:text-[10px] text-muted">Top 10%</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* 中国地图 */}
-          <div className="px-4">
-            <div className="glass-card rounded-2xl p-4 mb-4">
-              <div className="flex items-center justify-between mb-3">
+          <div className="px-3 sm:px-4">
+            <div className="glass-card rounded-2xl p-3 sm:p-4 mb-3 sm:mb-4">
+              <div className="flex items-center justify-between mb-2 sm:mb-3">
                 <h3 className="font-semibold text-sm">从业者分布</h3>
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1">
-                    <div className="w-3 h-3 rounded" style={{ backgroundColor: '#1E1B4B' }} />
-                    <div className="w-3 h-3 rounded" style={{ backgroundColor: '#3730A3' }} />
-                    <div className="w-3 h-3 rounded" style={{ backgroundColor: '#4F46E5' }} />
-                    <div className="w-3 h-3 rounded" style={{ backgroundColor: '#6366F1' }} />
-                    <div className="w-3 h-3 rounded" style={{ backgroundColor: '#F472B6' }} />
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="flex items-center gap-0.5 sm:gap-1">
+                    <div className="w-2 sm:w-3 h-2 sm:h-3 rounded" style={{ backgroundColor: '#1E1B4B' }} />
+                    <div className="w-2 sm:w-3 h-2 sm:h-3 rounded" style={{ backgroundColor: '#3730A3' }} />
+                    <div className="w-2 sm:w-3 h-2 sm:h-3 rounded" style={{ backgroundColor: '#4F46E5' }} />
+                    <div className="w-2 sm:w-3 h-2 sm:h-3 rounded" style={{ backgroundColor: '#6366F1' }} />
+                    <div className="w-2 sm:w-3 h-2 sm:h-3 rounded" style={{ backgroundColor: '#F472B6' }} />
                   </div>
-                  <span className="text-[10px] text-muted">低 → 高</span>
+                  <span className="text-[9px] sm:text-[10px] text-muted">低 → 高</span>
                 </div>
               </div>
 
@@ -205,10 +205,10 @@ export default function CommunityPage() {
           )}
 
           {/* 月亮按钮 */}
-          <div className="fixed bottom-20 left-0 right-0 flex justify-center pb-4 z-40">
-            <button onClick={() => { setMoonActive(!moonActive); setOvertimeCount(moonActive ? 0 : 150000); }} className={`group relative flex items-center gap-3 px-7 py-4 rounded-full transition-all duration-500 ${moonActive ? 'bg-gradient-to-r from-accent to-warning text-white shadow-lg shadow-accent/30 scale-105' : 'glass-card hover:border-accent/30'}`}>
+          <div className="fixed bottom-16 sm:bottom-20 left-0 right-0 flex justify-center pb-3 sm:pb-4 z-40">
+            <button onClick={() => { setMoonActive(!moonActive); setOvertimeCount(moonActive ? 0 : 150000); }} className={`group relative flex items-center gap-2 sm:gap-3 px-4 sm:px-7 py-3 sm:py-4 rounded-full transition-all duration-500 ${moonActive ? 'bg-gradient-to-r from-accent to-warning text-white shadow-lg shadow-accent/30 scale-105' : 'glass-card hover:border-accent/30'}`}>
               {moonActive && <div className="absolute -inset-1 bg-gradient-to-r from-accent to-warning rounded-full opacity-30 blur-lg animate-pulse" />}
-              <div className={`relative w-9 h-9 transition-transform duration-500 ${moonActive ? 'rotate-12' : 'group-hover:scale-110'}`}>
+              <div className={`relative w-7 sm:w-9 h-7 sm:h-9 transition-transform duration-500 ${moonActive ? 'rotate-12' : 'group-hover:scale-110'}`}>
                 {moonActive ? (
                   <svg className="w-9 h-9 drop-shadow-lg" viewBox="0 0 24 24" fill="currentColor"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.05 8.05 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.14 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05z" /></svg>
                 ) : (
@@ -216,8 +216,8 @@ export default function CommunityPage() {
                 )}
               </div>
               <div className="text-left relative z-10">
-                <p className="font-semibold">{moonActive ? '加班中' : '我在加班'}</p>
-                <p className="text-xs opacity-70">{moonActive ? '点击结束' : '点亮让同行看到'}</p>
+                <p className="font-semibold text-sm sm:text-base">{moonActive ? '加班中' : '我在加班'}</p>
+                <p className="text-[10px] sm:text-xs opacity-70">{moonActive ? '点击结束' : '点亮让同行看到'}</p>
               </div>
             </button>
           </div>
